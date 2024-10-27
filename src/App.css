@@ -1,0 +1,39 @@
+  
+  .movie-container {
+    display: flex;
+    flex-wrap: wrap; /* 줄 넘김 설정 - wrap : 공간 부족하면 줄 넘겨~~ */
+    justify-content: space-evenly; /* 영화 간 간격 일정하게 설정 */
+    padding: 10px; /* 컨테이너(전체 틀)의 padding */
+  }
+  
+  .movie-card {
+    background-color: white; /* 카드의 배경 색 설정 */
+    border-radius: 10px; /* 둥근 모서리 설정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px; /* 카드 간 간격 조정 */
+    width: 200px; /* 카드 가로 길이 설정 */
+    transition: transform 0.2s;
+  }
+  
+  /*hover : 마우스가 위로 올라갔을 때 효과 설정 */
+  .movie-card:hover { 
+    transform: scale(1.05); /*2D 공간에서 확대 축소 기능*/
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out; /* 효과 천천히 나타나고 천천히 사라짐 */
+  }
+  
+  
+  .movie-poster{
+    border-top-left-radius: 10px; /*포스터 둥근 모서리 설정 - 왼쪽 */
+    border-top-right-radius: 10px; /*포스터 둥근 모서리 설정 - 오른쪽 */
+    width: 100%;
+    height: 100%;
+    filter:brightness(1);
+  }
+
+   /*hover : 마우스가 위로 올라갔을 때 효과 설정 */
+  .movie-poster:hover{
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out; /* 효과 천천히 나타나고 천천히 사라짐 */
+    filter:brightness(0.5);/* 마우스 포인터 올라가면 이미지 어두워짐 */
+  }
