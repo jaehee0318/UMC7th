@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
 import { axiosInstance } from "../api/axios-instance";
+import useCustomFetch from "../../hooks/useCustomFetch";
 
 const MovieContainer = styled.div`
   display: flex;
@@ -32,21 +33,36 @@ const MovieReleaseDate = styled.p`
 // 영화 목록을 가져오는 재사용 가능한 컴포넌트
 const MovieList = ({ endpoint }) => {
   const [movies, setMovies] = useState([]);
+  const {data, isLoading, isError} = useCustomFetch(endpoint);
 
+  useEffect(() => {
+    setMovies(data);
+  }, [data]);
+
+  if(isLoading){
+    return <div>
+      <h1 sytle={{color: 'white'}}>로딩 중 입니다...</h1>
+    </div>
+  }
+
+  if(isError){
+    return <div>
+      <h1 sytle={{color: 'white'}}>에러 발생</h1>
+    </div>
+  }
+  /*
   useEffect(() => {
     const getMovies = async () => {
       try {
-        const response = await axiosInstance.get(endpoint, {
-        });
+        const response = await axiosInstance.get(endpoint);
         setMovies(response.data.results);
       } catch (error) {
         console.error("영화 데이터를 가져오는 중 오류 발생:", error);
       }
     };
-
     getMovies();
   }, [endpoint]);
-
+*/
   return (
     <MovieContainer>
       {movies.map((movie) => (
