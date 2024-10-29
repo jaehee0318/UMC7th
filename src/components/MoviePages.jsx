@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { axiosInstance } from "../api/axios-instance";
 import useCustomFetch from "../../hooks/useCustomFetch";
+import { useNavigate } from "react-router-dom";
 
 const MovieContainer = styled.div`
   display: flex;
@@ -34,35 +35,29 @@ const MovieReleaseDate = styled.p`
 const MovieList = ({ endpoint }) => {
   const [movies, setMovies] = useState([]);
   const {data, isLoading, isError} = useCustomFetch(endpoint);
+  const navigate = useNavigate()
+  const handleClickImage  = (movie) =>{
+    navigate(`/movie/${movie.id}`);
+  };
 
   useEffect(() => {
-    setMovies(data);
+    if (data && data.results){
+    setMovies(data.results);
+    }
   }, [data]);
 
   if(isLoading){
     return <div>
-      <h1 sytle={{color: 'white'}}>로딩 중 입니다...</h1>
+      <h1 style={{color: 'white'}}>로딩 중 입니다...</h1>
     </div>
   }
 
   if(isError){
     return <div>
-      <h1 sytle={{color: 'white'}}>에러 발생</h1>
+      <h1 style={{color: 'white'}}>에러 발생</h1>
     </div>
   }
-  /*
-  useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const response = await axiosInstance.get(endpoint);
-        setMovies(response.data.results);
-      } catch (error) {
-        console.error("영화 데이터를 가져오는 중 오류 발생:", error);
-      }
-    };
-    getMovies();
-  }, [endpoint]);
-*/
+  
   return (
     <MovieContainer>
       {movies.map((movie) => (
@@ -70,6 +65,7 @@ const MovieList = ({ endpoint }) => {
           <MoviePoster
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
+            onClick={()=> handleClickImage(movie)}
           />
           <MovieTitle>{movie.title}</MovieTitle>
           <MovieReleaseDate>{movie.release_date}</MovieReleaseDate>

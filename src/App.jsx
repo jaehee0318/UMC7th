@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import CategoryPage from './components/CategoryPage'; 
 import { NowPlayingMovies, PopularMovies, UpComingMovies, TopRatedMovies } from './components/MoviePages';
+import MovieDetailPage from './components/MovieDetail/MovieDetailPage';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -151,6 +152,10 @@ const router = createBrowserRouter([
       {
         path: 'movies/up-coming',
         element: <UpComingMovies/>
+      },
+      {
+        path: 'movie/:movieId',
+        element: <MovieDetailPage/>
       }
     ]
   }
