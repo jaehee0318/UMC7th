@@ -11,6 +11,8 @@ import Sidebar from './components/Sidebar';
 import CategoryPage from './components/CategoryPage'; 
 import { NowPlayingMovies, PopularMovies, UpComingMovies, TopRatedMovies } from './components/MoviePages';
 import MovieDetailPage from './components/MovieDetail/MovieDetailPage';
+import LoginPage from './components/Login';
+import SignupPage from './components/Signup';
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -66,24 +68,6 @@ const HomePage = () => {
   return (
     <ContentContainer>
       <h1>홈페이지</h1>
-    </ContentContainer>
-  );
-};
-
-// 로그인 페이지 컴포넌트
-const LoginPage = () => {
-  return (
-    <ContentContainer>
-      <h1>로그인 페이지</h1>
-    </ContentContainer>
-  );
-};
-
-// 회원가입 페이지 컴포넌트
-const SignupPage = () => {
-  return (
-    <ContentContainer>
-      <h1>회원가입 페이지</h1>
     </ContentContainer>
   );
 };
